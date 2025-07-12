@@ -1,0 +1,23 @@
+name: Check for Broken Links
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  broken-link-check:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+
+      - name: Install Lychee Link Checker
+        run: |
+          curl -LSfs https://raw.githubusercontent.com/lycheeverse/lychee/main/install.sh | bash -s -- --git lycheeverse/lychee
+
+      - name: Run Lychee on README.md
+        run: |
+          ./bin/lychee --verbose README.md
