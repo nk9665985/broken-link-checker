@@ -16,5 +16,3 @@ jobs:
 
       - name: Run Lychee link checker
         uses: lycheeverse/lychee-action@v1.6.1
-        with:
-          args: --verbose README.md
